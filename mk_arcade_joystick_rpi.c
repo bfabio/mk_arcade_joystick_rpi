@@ -546,6 +546,7 @@ static struct mk __init *mk_probe(int *pads, int n_pads) {
 
     mutex_init(&mk->mutex);
     setup_timer(&mk->timer, mk_timer, (long) mk);
+    mod_timer(&mk->timer, jiffies + MK_REFRESH_TIME);
 
     for (i = 0; i < n_pads && i < MK_MAX_DEVICES; i++) {
         if (!pads[i])
